@@ -1,0 +1,156 @@
+<!-- main.html --> 
+{% extends 'page.html' %}
+
+{% block content %}
+    <!-- main.html 的內容 -->
+    <!--================= Home One Start =================-->
+    <div class="xoxo_fn_content">
+        <!--================= Slider Area Start Here =================-->
+        <div class="fn__bp_slider">
+            <div class="container">
+              <div class="bp_slider_in">
+                <div class="swiper swiper-container ready swiper-container-horizontal">
+                  <div class="swiper-wrapper">
+                    {% for data in data %}
+                    <div class="swiper-slide">
+                      <div class="img_wrap">
+                        <div class="img_holder">
+                          <div class="abs_img" style="background-image: url(/media/{{data.food_img}})"></div>
+                        </div>
+                      </div>
+                      <div class="title_holder">
+                        <h3><a href="/quote_post/{{data.food_no}}">{{data.food_name}}</a></h3>
+                        <div class="fn__meta">
+                          <p>
+                            <span class="meta_item meta_date">{{data.upload_date}}</span>
+                            <span class="meta_item meta_category">
+                              <a class="fn_last_category" href="/search/{{data.tag}}">{{data.tag}}</a>
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+          <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+          
+          <script>
+            $(document).ready(function() {
+              var swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                navigation: {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                  el: '.swiper-pagination',
+                  clickable: true,
+                },
+              });
+            });
+          </script>
+          
+        <!--================= Slider Area End Here =================-->
+
+        <!--================= Blog Area End Here =================--> 
+        <div class="xoxo_fn_nosidebar">
+            <div class="container blog_layout_classic_container">
+                <div class="xoxo_fn_bloglist blog_layout_classic">
+                    <br><br>
+                        <div class="featured_post_item"> 
+                            <div class="fp_heading">
+                                <h3>
+                                    <span class="text_wrapper">
+                                        <span class="icon__before">
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet" class="fn__svg  replaced-svg">
+                                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                                    <path d="M1955 5106 c-16 -7 -40 -24 -52 -38 -13 -14 -229 -557 -533 -1343 -557 -1439 -532 -1362 -480 -1435 44 -62 22 -60 785 -60 588 0 695 -2 695 -14 0 -8 -112 -467 -250 -1021 -137 -554 -250 -1025 -250 -1047 0 -100 92 -168 189 -139 20 6 47 21 58 33 30 32 2112 3275 2130 3318 29 68 -6 158 -73 186 -27 11 -144 14 -634 14 -330 0 -600 3 -600 6 0 3 135 312 300 686 237 538 300 690 300 723 0 51 -31 101 -80 126 -33 18 -73 19 -755 19 -578 -1 -726 -3 -750 -14z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    <span class="text">熱門美食</span>
+                                    <span class="icon__after">
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewbox="0 0 512.000000 512.000000" preserveaspectratio="xMidYMid meet" class="fn__svg  replaced-svg">
+                                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                                                    <path d="M1955 5106 c-16 -7 -40 -24 -52 -38 -13 -14 -229 -557 -533 -1343 -557 -1439 -532 -1362 -480 -1435 44 -62 22 -60 785 -60 588 0 695 -2 695 -14 0 -8 -112 -467 -250 -1021 -137 -554 -250 -1025 -250 -1047 0 -100 92 -168 189 -139 20 6 47 21 58 33 30 32 2112 3275 2130 3318 29 68 -6 158 -73 186 -27 11 -144 14 -634 14 -330 0 -600 3 -600 6 0 3 135 312 300 686 237 538 300 690 300 723 0 51 -31 101 -80 126 -33 18 -73 19 -755 19 -578 -1 -726 -3 -750 -14z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                </h3>
+                            </div>
+                            <div class="fp_content">
+                                <ul>
+                                    <li>
+                                        <div class="fp__item">
+                                            <span class="fp_count"><span>01</span></span>
+                                            <h4><a href="#0"></a></h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="fp__item">
+                                            <span class="fp_count"><span>02</span></span>
+                                            <h4><a href="#0"></a></h4>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="fp__item"><span class="fp_count"><span>03</span></span>
+                                            <h4><a href="#0"></a></h4>
+                                        </div>
+                                    </li>
+                                </ul>
+                                
+                            </div>
+                        </div>
+                    <br><br>
+                    <ul class="post_list">
+                        {% for data in data %}
+                        <li class="post_item">
+                            <div class="blog__item blog__item_classic">
+                                <div class="fn__meta">
+                                    <p>
+                                        <span class="meta_item meta_date">
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="470.000000pt" height="470.000000pt" viewbox="0 0 470.000000 470.000000" preserveaspectratio="xMidYMid meet" class="fn__svg  replaced-svg">
+                                            </svg>
+                                            {{ data.upload_date }}
+                                        </span>
+                                        <span class="meta_item meta_category">
+                                            <a class="fn_last_category" href="">{{ data.tag }}</a>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="bottom_holder">
+                                    <div class="blog__image">
+                                        <a href=""><img src="/media/{{ data.food_img }}" alt="Post Image"></a>
+                                    </div>
+                                    <div class="title_holder">
+                                        <div class="title">
+                                            <h3><a href="">{{ data.food_name }}</a></h3>
+                                        </div>
+                                        <div class="read_more">
+                                            <div class="read_in">
+                                                <a href="/quote_post/{{data.food_no}}"><span class="text">觀看更多</span><span class="triple"></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>  
+                    </ul>{% endfor %}
+                </div>
+            </div> 
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+<!-- myinfo.html -->
+{% extends 'page.html' %}<!-- 連接模板 -->
+
+{% block content %}
+    <!-- myinfo.html 的內容 -->
+    <!-- 放只有這頁才有的內容 -->
+    <div class="xoxo_fn_hassidebar">
+        <div class="sidebar_in">
+            <div class="xoxo_fn_sidebar">
+                <div class="xoxo_fn_nosidebar">
+                    <div class="container blog_layout_classic_container">
+                        <div class="xoxo_fn_bloglist blog_layout_classic">
+                            <div class="widget_block clear widget_xoxo_custom_categories">
+                                <div class="wid-title">
+                                    <span class="text">關於我</span>
+                                    <span class="icon"></span>
+                                </div>
+                                <ul>{% for data in data %}
+                                    <div class="xoxo_fn_widget_author">
+                                        <div class="info_img" id="photo" style="background-image: url(/media/{{data.photo}});">
+                                            <div class="abs_img"></div>
+                                        </div>
+                                        <div class="info_desc">
+                                            <div class="author_top">
+                                                <h3 class="fn_title">
+                                                    <a href="#0">{{name}}</a>
+                                                </h3>
+                                                <p class="fn_desc">
+                                                    個人簡介：<div id="info">{{data.info}}</div><br>
+                                                    帳號：<div id="username">{{data.username}}</div><br>
+                                                    姓名：<div id="fname">{{data.fname}} {{data.lname}}</div><br>
+                                                    生日：<div id="birthday">{{data.birthday}}</div><br>
+                                                    性別：<div id="sex">{{data.sex}}</div><br>
+                                                    手機：<div id="phone">{{data.phone}}</div><br>
+                                                    email：<div id="email">{{data.email}}</div><br>
+                                                    {%endfor%}
+                                                </p>
+                                                <a href="/myinfo_edit/"><span class="xoxo_submit"><input type="submit" value="編輯"></span></a>
+                                            </div>                               
+                                        </div>  
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

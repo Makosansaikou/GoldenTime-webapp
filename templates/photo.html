@@ -1,0 +1,85 @@
+<!-- photo.html -->
+{% extends 'page.html' %}<!-- 連接模板 -->
+
+{% block content %}
+    <!-- photo.html 的內容 -->
+    <!-- 放只有這頁才有的內容 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5Py2oaRlbR6MMsXhM6oGLmqlbCWeWrUE&libraries=places"></script>
+    <div class="xoxo_fn_nosidebar">
+        <div class="container blog_layout_classic_container">
+            <div class="xoxo_fn_bloglist blog_layout_classic">
+                <ul>
+                    <li class="post_item">
+                        <div class="blog__item blog__item_classic">
+                            <div class="bottom_holder">
+                                <div class="title_holder">
+                                    <form action="." method="post" class="comment-form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <h2>Hi！美食探勘家</h2><br>
+                                        <h4>選擇你要上傳的美食：</h4>
+                                        <input type="file" id="file-input" name="fdimg" accept=".jpg, .jpeg, .png">
+                                        <img id="image-preview" src="#" alt="Image preview"><br><br>
+                                        <div class="input-holder">
+                                            <textarea placeholder="想一個美味的標題吧！" name="fdname" aria-required="true" rows="1" tabindex="1"></textarea>
+                                            <br>
+                                            <textarea placeholder="留下你的心得吧！" name="context" aria-required="true" rows="10" tabindex="1"></textarea>
+                                            <br>
+                                            <label for="htag">這份美食的分類</label>
+                                            <select name="tag" id="htag">
+                                                <option value="麵包">麵包</option>
+                                                <option value="乳製品">乳製品</option>
+                                                <option value="甜點">甜點</option>
+                                                <option value="蛋類">蛋類</option>
+                                                <option value="炸物">炸物</option>
+                                                <option value="肉類">肉類</option>
+                                                <option value="麵類">麵類</option>
+                                                <option value="飯類">飯類</option>
+                                                <option value="海鮮">海鮮</option>
+                                                <option value="湯品">湯品</option>
+                                                <option value="蔬菜">蔬菜</option>
+                                                </select>
+                                        </div><br>
+                                        <div class="input">
+                                            <input type="text" id="address" name="address" placeholder="輸入這份美食的位置" autocomplete="off">
+                                            <input type="button" onclick="showMap()" value="顯示地圖"></button><br>
+                                            <div id="map" style="height: 400px;"></div><br>
+                                        </div>
+                                        <br>
+                                        <div class="input-holder">
+                                            <span class="xoxo_submit">
+                                                <input name="submit" type="submit" class="submit" value="分享">
+                                            </span>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        let map;
+        function showMap() {
+            const geocoder = new google.maps.Geocoder();
+            const address = document.getElementById('address').value;
+            geocoder.geocode({ 'address': address }, function(results, status) {
+                if (status === 'OK') {
+                    const location = results[0].geometry.location;
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: location,
+                        zoom: 15
+                    });
+                    new google.maps.Marker({
+                        map: map,
+                        position: location
+                    });
+                } else {
+                    alert('地圖無法顯示，請輸入有效地址！');
+                }
+            });
+        }
+    </script>
+{% endblock %}

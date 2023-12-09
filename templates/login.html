@@ -1,0 +1,70 @@
+<!-- login.html -->
+{% extends 'page.html' %}<!-- 連接模板 -->
+
+{% block content %}
+    <!-- login.html 的內容 -->
+    <!-- 放只有這頁才有的內容 -->
+    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username.trim() === "") {
+                alert("請輸入帳號");
+                return false;
+            }
+
+            if (password.trim() === "") {
+                alert("請輸入密碼");
+                return false;
+            }
+
+            var specialChars = /[!@#$%^&*(),.?":{}|<>]/;
+            if (specialChars.test(username)) {
+                alert("帳號不能包含特殊字符");
+                return false;
+            }
+
+            if (specialChars.test(password)) {
+                alert("密碼不能包含特殊字符");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    <div class="xoxo_fn_nosidebar">
+        <div class="container blog_layout_classic_container">
+            <div class="xoxo_fn_bloglist blog_layout_classic">
+                <ul>
+                    <li class="post_item">
+                        <div class="blog__item blog__item_classic">
+                            <div class="bottom_holder">
+                                <div class="title_holder">
+                                    <form class="main_form" action="#" method="POST">{% csrf_token %}
+                                        <h2>美食探勘家</h2>
+                                        <div class="input">
+                                            <h3>帳號：
+                                            <input type="text" placeholder="請輸入帳號" name="username" required> 
+                                            </h3>
+                                            <h3>密碼：
+                                            <input type="password" placeholder="請輸入密碼" name="password" required>
+                                            </h3>
+                                        </div>
+                                        <div class="read_more">
+                                            <div class="read_in">
+                                                <span class="xoxo_submit"><input type="submit" value="登入"></span>
+                                            </div>
+                                        </div>
+                                        <a href="/into_sigin/"><span class="text">點我開始註冊</span></a>
+                                    </form>     
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  
+{% endblock %}

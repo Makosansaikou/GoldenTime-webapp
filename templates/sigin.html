@@ -1,0 +1,67 @@
+<!-- sigin.html -->
+{% extends 'page.html' %}<!-- 連接模板 -->
+
+{% block content %}
+    <!-- sigin.html 的內容 -->
+    <!-- 放只有這頁才有的內容 -->
+    <div class="xoxo_fn_header">
+        <div class="container">
+            <div class="blog__item blog__item_classic">
+                <div class="bottom_holder">
+                    <div class="title_holder">
+                        <div class="title">
+                            <div class="input">
+                                <form action="." method="POST" enctype="multipart/form-data" onsubmit="return validatePassword()">{% csrf_token %}
+                                    <div class="input">
+                                        <h3>&emsp;&emsp;帳號：
+                                        <input type="text" placeholder="請輸入帳號" name="username" required>
+                                        </h3>
+                                        <h3>電子郵件：
+                                            <input type="text" placeholder="請輸入電子郵件" name="email" required>
+                                        </h3>
+                                        <h3>&emsp;&emsp;電話：
+                                            <input type="text" placeholder="請輸入您的電話" name="phone" required>
+                                        </h3>
+                                        <h3>&emsp;&emsp;姓氏：
+                                            <input type="text" placeholder="請輸入您的姓氏" name="lname" required>
+                                        </h3>
+                                        <h3>&emsp;&emsp;名字：
+                                            <input type="text" placeholder="請輸入您的名字" name="fname" required>
+                                        </h3>
+                                        <h3>生日：&ensp;
+                                            <input type="date" placeholder="請輸入您的生日" name="birthday" required>
+                                        </h3>
+                                        <h3>性別：
+                                            <input type="radio" name="sex" value="male">&ensp;男&ensp;
+                                            <input type="radio" name="sex" value="female">&ensp;女<p>
+                                        </h3>
+                                        <h3>&emsp;&emsp;密碼：
+                                            <input type="password" placeholder="請輸入密碼" name="password" required>
+                                        </h3>
+                                        <h3>確認密碼：
+                                            <input type="password" placeholder="請再輸入一次密碼" name="password2" required>
+                                        </h3>
+                                        <h3>個人簡介：
+                                            <div class="input-holder">
+                                                <textarea placeholder="請輸入您的個人簡介讓我們了結你的個人喜好" name="info" aria-required="true" rows="10" tabindex="1"></textarea>
+                                            </div> 
+                                        </h3>
+                                        <!--================= cmd＋f 個人頭貼=================-->
+                                        <h3>上傳您的大頭貼：</h3>
+                                        <input type="file" id="file-input" name="photo" accept=".jpg, .jpeg, .png">
+                                    </div>
+                                </br>
+                                    <div class="read_more">
+                                        <div class="read_in">
+                                            <span class="xoxo_submit"><input type="submit" value="註冊"></span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
