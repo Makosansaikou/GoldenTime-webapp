@@ -4,8 +4,9 @@ from django.http import HttpResponse
 from django.contrib import auth
 from django.contrib.auth.models import User
 from Goldentime.settings import BASE_DIR
-from baseapp.models import basedata,food,mesg,love
+from baseapp.models import basedata,food,mesg,love,search
 from tensorflow.keras.models import load_model
+from django.db.models import Count
 from pyimagesearch import config
 import output
 import numpy as np
@@ -22,7 +23,8 @@ def adminpage(request):
     return redirect('admin＿page.html')
 def into_index(request):                          
 	data = food.objects.all().order_by('hit')[:10] #抓推薦食物跟熱門食物
-	rank = food.objects.all().order_by('hit')[:3]
+	rank = search.objects.values('context').annotate(context_count=Count('context')).order_by('-context_count')[:3]
+	print(rank)
 	if request.user.is_authenticated:
 		name=request.user.username
 	return render(request,'main.html',locals())
@@ -117,7 +119,7 @@ def into_upload(request):
                 context=context,
                 tag=tag,
                 food_img=food_img,
-                food_hash=hash_value  # 將 pHash 值保存到 food_hash 屬性
+                food_hash=hash_value  # 將 pHash 值保存用於優化搜尋
             )
 
             return redirect('/mypost/')
@@ -142,7 +144,12 @@ def name_search(request): #用名稱找
 		searchname = request.POST['searchname']
 		data = food.objects.filter(food_name__icontains=searchname)
 	return render(request,'search.html',locals())
-def search(request,searchname):#用tag找
+def tag_search(request,searchname):#用tag找
+	if request.user.is_authenticated:
+		username = basedata.objects.get(username=request.user.username)
+	else:
+		username = 'test'
+	unit = search.objects.create(username=username,context=searchname)
 	data = food.objects.filter(tag=searchname)
 	return render(request,'search.html',locals())
 def into_search(request):
